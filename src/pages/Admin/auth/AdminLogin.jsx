@@ -1,6 +1,7 @@
 // --- Imports ---
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 // Icons for visual elements
 import {
@@ -16,6 +17,7 @@ import Popup from "../../../components/Popup";
 const AdminLogin = () => {
   // --- Navigation & State ---
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [loading, setLoading] = useState(false); // Manages button loading state
 
   // Stores email and password input values
@@ -53,9 +55,9 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      // API call to dedicated Admin login endpoint
+      // API call to dedicated Admin login endpoint using environment variable
       const response = await fetch(
-        "http://localhost:5000/api/v1/auth/admin/login",
+        `${import.meta.env.VITE_API_BASE_URL}/api/v1/auth/admin/login`,
         {
           method: "POST",
           headers: {
@@ -71,15 +73,16 @@ const AdminLogin = () => {
         throw new Error(data.message || "Login failed");
       }
 
-      // 1. Store security token and user data in local storage
-      localStorage.setItem("token", data.data.accessToken);
-      localStorage.setItem("user", JSON.stringify(data.data.user));
-
-      // 2. Strict check: Only allow users with 'admin' role to proceed
+      // 1. Strict check: Only allow users with 'admin' role to proceed
       if (data.data.user.role !== "admin") {
         throw new Error(
           "Access denied. This portal is for Administrators only.",
         );
+      }
+
+      // 2. Use the login function from AuthContext to set user and token globally
+      if (data.data && data.data.accessToken) {
+        login(data.data.user, data.data.accessToken);
       }
 
       // 3. Show success feedback and redirect
@@ -209,7 +212,7 @@ const AdminLogin = () => {
         @keyframes shimmer {
           100% {
             transform: translateX(100%);
-          } 
+          }
         }
       `}</style>
 

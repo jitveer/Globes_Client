@@ -137,7 +137,7 @@ const AdminDashboard = () => {
   ];
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (!token || (user?.role !== "admin" && user?.role !== "superadmin")) {
@@ -162,7 +162,7 @@ const AdminDashboard = () => {
 
   const fetchNotifications = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/admin-notifications`,
         {
@@ -180,7 +180,7 @@ const AdminDashboard = () => {
 
   const fetchUnreadCount = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/admin-notifications/unread-count`,
         {
@@ -198,7 +198,7 @@ const AdminDashboard = () => {
 
   const handleMarkAsRead = async (id) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/admin-notifications/${id}/read`,
         {
@@ -238,7 +238,7 @@ const AdminDashboard = () => {
 
   const handleMarkAllAsRead = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/admin-notifications/mark-all-read`,
         {
@@ -258,7 +258,7 @@ const AdminDashboard = () => {
 
   const fetchInquiries = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/inquiries`,
         {
@@ -282,7 +282,7 @@ const AdminDashboard = () => {
 
   const fetchUsers = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/users`,
         {
@@ -313,7 +313,7 @@ const AdminDashboard = () => {
   const fetchProperties = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/properties?status=all`,
         {
@@ -353,7 +353,7 @@ const AdminDashboard = () => {
       return;
 
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/properties/${id}`,
         {
@@ -380,7 +380,7 @@ const AdminDashboard = () => {
   const handleToggleStatus = async (id, currentStatus) => {
     try {
       const newStatus = currentStatus === "active" ? "inactive" : "active";
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
 
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/properties/${id}`,
@@ -420,7 +420,7 @@ const AdminDashboard = () => {
   ];
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("accessToken");
     localStorage.removeItem("user");
     localStorage.removeItem("adminActiveTab");
     navigate("/admin/login");

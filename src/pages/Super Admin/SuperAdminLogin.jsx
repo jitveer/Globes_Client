@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import {
   FaShieldAlt,
   FaLock,
@@ -11,6 +12,7 @@ import {
 
 const SuperAdminLogin = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -47,9 +49,10 @@ const SuperAdminLogin = () => {
         throw new Error(data.message || "Login failed");
       }
 
-      // Store token and user data
-      localStorage.setItem("token", data.data.accessToken);
-      localStorage.setItem("user", JSON.stringify(data.data.user));
+      // Use the login function from AuthContext to set user and token globally
+      if (data.data && data.data.accessToken) {
+        login(data.data.user, data.data.accessToken);
+      }
 
       // Redirect to dashboard
       navigate("/super-admin");
@@ -59,6 +62,7 @@ const SuperAdminLogin = () => {
       setLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden">
