@@ -371,10 +371,10 @@ const DesktopHomeLayout = () => {
         {/* Content */}
         <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center py-10 md:py-0">
           <div className="w-full max-w-2xl animate-[fadeInUp_1s_ease-out]">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 sm:mb-6 leading-tight">
+            <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-4 sm:mb-6 leading-tight">
               {heroSlides[currentSlide].title}
             </h1>
-            <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-6 sm:mb-8">
+            <p className="text-sm sm:text-lg md:text-xl text-gray-200 mb-6 sm:mb-8">
               {heroSlides[currentSlide].subtitle}
             </p>
 
@@ -448,22 +448,9 @@ const DesktopHomeLayout = () => {
                     </div>
                   )}
                 </div>
-                {/* <div className="relative">
-                  <FaMapMarkerAlt className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-                  <select
-                    value={selectedLocation}
-                    onChange={(e) => setSelectedLocation(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 appearance-none"
-                  >
-                    <option value="">All Locations</option>
-                    <option value="bangalore">Bangalore</option>
-                    <option value="mumbai">Mumbai</option>
-                    <option value="delhi">Delhi</option>
-                  </select>
-                </div> */}
                 <button
                   onClick={handleSearch}
-                  className="bg-orange-600 text-white py-3 px-6 rounded-xl font-bold hover:bg-orange-700 transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-orange-600/30 text-sm sm:text-base"
+                  className="bg-orange-600 text-white py-3 px-6 rounded-xl hover:bg-orange-700 transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-orange-600/30 text-sm sm:text-base"
                 >
                   Search Properties
                 </button>
@@ -489,7 +476,7 @@ const DesktopHomeLayout = () => {
       {/* Stats Section */}
       <section className="py-8 md:py-12 bg-gradient-to-r from-orange-600 to-orange-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-4 md:grid-cols-4 gap-6 md:gap-8">
             {stats.map((stat, index) => (
               <div
                 key={index}
@@ -498,7 +485,7 @@ const DesktopHomeLayout = () => {
                 }s_ease-out] hover:scale-110 transition-transform duration-300`}
               >
                 <stat.icon className="text-xl md:text-4xl mx-auto mb-3 opacity-90" />
-                <div className="text-xl font-bold mb-2 md:text-4xl">
+                <div className="text-base font-bold mb-2 md:text-4xl">
                   <CountUp end={stat.end} suffix={stat.suffix} />
                 </div>
                 <div className="text-orange-100 text-xs md:text-base">
@@ -560,20 +547,20 @@ const DesktopHomeLayout = () => {
       </section> */}
 
       {/* Featured Properties */}
-      <section className="py-12 md:py-20 bg-white">
+      <section className="py-12 pb-4 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col sm:flex-row justify-betwee  items-start sm:items-center gap-6 mb-10 md:mb-16 animate-[fadeInUp_0.6s_ease-out]">
-            <div className="max-md:border-l-4 max-md:border-orange-600 max-md:pl-4">
-              <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-2 tracking-tight">
+          <div className="flex flex-row sm:flex-row justify-betwee  items-start sm:items-center gap-2 md:gap-6 mb-4 md:mb-10 md:mb-16 animate-[fadeInUp_0.6s_ease-out]">
+            <div className="">
+              <h2 className="text-xl md:text-5xl font-extrabold text-gray-900 mb-2 tracking-tight">
                 Featured Properties
               </h2>
-              <p className="text-base md:text-xl text-gray-600 font-medium">
+              <p className="text-xs md:text-xl text-gray-600 font-medium">
                 Handpicked premium properties just for you
               </p>
             </div>
             <button
               onClick={() => navigate("/properties")}
-              className="flex sm:hidden items-center gap-2 text-orange-600 font-bold bg-orange-50 px-4 py-2 rounded-full text-sm self-end"
+              className="flex sm:hidden items-center gap-1 md:gap-2 text-xs md:text-sm text-orange-600 font-bold md:bg-orange-50 px-1 md:px-4 py-2 rounded-full text-sm self-center md:self-end"
             >
               View All
               <FaChevronRight className="text-xs" />
@@ -587,17 +574,18 @@ const DesktopHomeLayout = () => {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
+          {/* Mobile/Tablet: horizontal scroll | Desktop: 3-col grid */}
+          <div className="no-scrollbar flex lg:grid lg:grid-cols-3 gap-4 lg:gap-8 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0">
             {latestRealProperties.map((property, index) => (
               <div
                 key={property._id}
                 onClick={() => navigate(`/property/${property._id}`)}
                 className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 group overflow-hidden cursor-pointer animate-[fadeInUp_${
                   0.8 + index * 0.1
-                }s_ease-out]`}
+                }s_ease-out] flex-shrink-0 w-[78vw] sm:w-[42vw] lg:w-auto`}
               >
                 {/* Image */}
-                <div className="relative overflow-hidden h-64">
+                <div className="relative overflow-hidden h-48 md:h-64">
                   <img
                     src={getImageUrl(property.images?.[0])}
                     alt={property.title}
@@ -606,7 +594,7 @@ const DesktopHomeLayout = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                   {/* Badges */}
-                  <div className="absolute top-4 left-4 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                  <div className="absolute top-2 left-2 bg-orange-600 text-white px-3 py-1 rounded-full text-xs md:text-sm font-medium md:font-semibold shadow-lg">
                     Featured
                   </div>
 
@@ -616,7 +604,7 @@ const DesktopHomeLayout = () => {
                       e.stopPropagation();
                       toggleFavorite(property._id);
                     }}
-                    className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 active:scale-95"
+                    className="absolute top-2 right-2 w-7 md:w-10 h-7 md:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 active:scale-95"
                   >
                     <FaHeart
                       className={`transition-colors duration-300 ${
@@ -628,34 +616,34 @@ const DesktopHomeLayout = () => {
                   </button>
 
                   {/* Type Badge */}
-                  <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-2 shadow-md">
+                  <div className="absolute bottom-2 left-2 md:bottom-4 md:left-4 bg-white/90 backdrop-blur-sm px-1.5 md:px-3 py-0.5 md:py-1.5 rounded-lg flex items-center gap-1 md:gap-2 shadow-md">
                     <FaHome className="text-orange-600 text-sm" />
-                    <span className="text-sm font-semibold text-gray-700">
+                    <span className="md:text-sm text-xs font-semibold text-gray-700">
                       {property.type}
                     </span>
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
+                <div className="pt-1 px-2 md:px-4  md:p-2">
                   {/* Title */}
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 line-clamp-1 group-hover:text-orange-600 transition-colors">
+                  <h3 className="text-base md:text-xl font-bold text-gray-900 mb-1 md:mb-2 line-clamp-1 group-hover:text-orange-600 transition-colors">
                     {property.title}
                   </h3>
 
                   {/* Location & Rating */}
-                  <div className="flex justify-between items-start mb-4">
+                  <div className="flex justify-between items-start mb-1 md:mb-4">
                     <div className="flex items-center gap-2 text-gray-600">
                       <FaMapMarkerAlt className="text-orange-600" />
-                      <span className="font-medium">
+                      <span className=" md:font-medium text-xs md:text-sm">
                         {typeof property.location === "object"
                           ? `${property.location.area}, ${property.location.city}`
                           : property.location}
                       </span>
                     </div>
-                    <div className="flex items-center gap-1 bg-orange-50 px-2 py-1 rounded-lg">
+                    <div className="flex items-start gap-1 bg-orange-50 px-2 py-1 rounded-lg self-start">
                       <FaStar className="text-orange-600 text-sm" />
-                      <span className="font-semibold text-gray-700">
+                      <span className="font-semibold text-sm md:text-base md:text-gray-700">
                         {property.rating || "4.5"}
                       </span>
                     </div>
@@ -665,19 +653,19 @@ const DesktopHomeLayout = () => {
                   <div className="flex gap-4 mb-4 text-gray-600">
                     <div className="flex items-center gap-2">
                       <FaBed className="text-orange-600" />
-                      <span className="font-medium">
+                      <span className="md:font-medium text-xs md:text-sm">
                         {property.beds || 0} Beds
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <FaBath className="text-orange-600" />
-                      <span className="font-medium">
+                      <span className="md:font-medium text-xs md:text-sm">
                         {property.baths || 0} Baths
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <FaRulerCombined className="text-orange-600" />
-                      <span className="font-medium">
+                      <span className="md:font-medium text-xs md:text-sm">
                         {property.area_sqm ||
                           property.plans?.[0]?.area_sqm ||
                           0}{" "}
@@ -687,12 +675,12 @@ const DesktopHomeLayout = () => {
                   </div>
 
                   {/* Price & Button */}
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-4 border-t border-gray-100">
+                  {/* <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-1 md:pt-4 border-t border-gray-100">
                     <div>
                       <p className="text-xs sm:text-sm text-gray-500 mb-0.5">
                         Starting from
                       </p>
-                      <p className="text-xl sm:text-2xl font-black text-gray-900">
+                      <p className="text-sm md:text-xl font-black text-gray-900">
                         ₹{property.priceRange || property.price || "Contact"}
                         {property.priceRange && (
                           <span className="text-base sm:text-lg font-normal text-gray-500 ml-1">
@@ -704,16 +692,16 @@ const DesktopHomeLayout = () => {
                     <button className="w-full sm:w-auto bg-orange-600 text-white px-6 py-2.5 rounded-xl font-bold hover:bg-orange-700 transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-md hover:shadow-orange-600/20 text-sm">
                       View Details
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 md:mt-12 text-center">
+          <div className="mt-4 md:mt-12 text-center">
             <button
               onClick={() => navigate("/properties")}
-              className="inline-flex items-center gap-2 bg-orange-600 text-white px-6 sm:px-10 py-3.5 sm:py-4 rounded-xl font-bold text-base sm:text-lg hover:bg-orange-700 transition-all duration-300 hover:scale-[1.05] active:scale-95 shadow-xl hover:shadow-orange-600/30"
+              className="inline-flex items-center gap-2 bg-orange-600 text-white px-2 md:px-6 sm:px-10 py-3 md:py-3.5 sm:py-4 rounded-xl font-medium md:font-bold text-xs md:text-base sm:text-lg hover:bg-orange-700 transition-all duration-300 hover:scale-[1.05] active:scale-95 shadow-xl hover:shadow-orange-600/30 hidden md:block"
             >
               View All Properties
               <FaChevronRight className="text-sm" />
@@ -723,9 +711,9 @@ const DesktopHomeLayout = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-12 md:py-20 bg-gradient-to-br from-gray-50 to-orange-50/30">
+      <section className="py-0 md:py-20 bg-gradient-to-br from-gray-50 to-orange-50/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 md:mb-16 animate-[fadeInUp_0.6s_ease-out]">
+          <div className="text-center mb-4 md:mb-12 md:mb-16 animate-[fadeInUp_0.6s_ease-out]">
             <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
               Why Choose Globes Properties
             </h2>
@@ -734,21 +722,23 @@ const DesktopHomeLayout = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 ">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className={`bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 group animate-[fadeInUp_${
+                className={`bg-white p-4 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 group animate-[fadeInUp_${
                   0.8 + index * 0.1
                 }s_ease-out]`}
               >
-                <div className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-orange-600 transition-colors duration-300">
+                <div className="w-8 h-8 md:w-16 md:h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-orange-600 transition-colors duration-300">
                   <feature.icon className="text-3xl text-orange-600 group-hover:text-white transition-colors duration-300" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="text-md md:text-xl font-bold text-gray-900 mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <p className="text-gray-600 text-xs md:text-sm">
+                  {feature.description}
+                </p>
               </div>
             ))}
           </div>
@@ -756,7 +746,7 @@ const DesktopHomeLayout = () => {
       </section>
 
       {/* Video Section */}
-      <section className="py-16 bg-white">
+      {/* <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-[fadeInLeft_0.8s_ease-out]">
@@ -804,10 +794,10 @@ const DesktopHomeLayout = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Testimonials Section */}
-      <section className="py-12 md:py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white hidden md:block">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16 animate-[fadeInUp_0.6s_ease-out]">
             <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
@@ -904,10 +894,10 @@ const DesktopHomeLayout = () => {
       <section className="py-16 bg-gradient-to-br from-gray-50 to-orange-50/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 animate-[fadeInUp_0.6s_ease-out]">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-base md:text-xl text-gray-600">
               Find answers to common questions about buying, selling, and
               renting properties
             </p>
@@ -968,7 +958,7 @@ const DesktopHomeLayout = () => {
                   }
                   className="w-full px-6 py-5 flex justify-between items-center text-left hover:bg-orange-50/50 transition-colors duration-300 group"
                 >
-                  <h3 className="text-lg font-semibold text-gray-900 pr-8 group-hover:text-orange-600 transition-colors duration-300">
+                  <h3 className="text-base md:text-lg font-semibold text-gray-900 pr-8 group-hover:text-orange-600 transition-colors duration-300">
                     {faq.question}
                   </h3>
                   <FaChevronDown
@@ -996,7 +986,7 @@ const DesktopHomeLayout = () => {
 
           {/* Still have questions CTA */}
           <div className="mt-12 text-center bg-white rounded-2xl p-8 shadow-lg animate-[fadeInUp_1.2s_ease-out]">
-            <h3 className="text-2xl font-bold text-gray-900 mb-3">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
               Still Have Questions?
             </h3>
             <p className="text-gray-600 mb-6">
@@ -1281,7 +1271,7 @@ const DesktopHomeLayout = () => {
 
             {/* Contact Info */}
             <div className="mt-10 pt-10 border-t border-gray-200">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+              <div className="grid grid-cols-3 md:grid-cols-1 md:grid-cols-3 gap-6 text-center">
                 <a
                   href="tel:+919945739702"
                   className="group hover:scale-105 transition-transform duration-300"
@@ -1290,7 +1280,9 @@ const DesktopHomeLayout = () => {
                     <FaPhone className="text-orange-600 text-xl group-hover:text-white transition-colors duration-300" />
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-1">Phone</h4>
-                  <p className="text-gray-600">+91 9945739702</p>
+                  <p className="text-gray-600 text-xs md:text-base">
+                    +91 9945739702
+                  </p>
                 </a>
                 <a
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@globesproperties.com"

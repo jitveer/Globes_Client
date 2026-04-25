@@ -43,7 +43,7 @@ const UserNotificationTab = ({ users = [] }) => {
   const fetchHistory = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/user-notifications`,
         {
@@ -65,7 +65,7 @@ const UserNotificationTab = ({ users = [] }) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
 
       // Validation
       if (

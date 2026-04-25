@@ -34,7 +34,7 @@ const NotificationTab = ({ users = [] }) => {
   const fetchNotifications = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/admin-notifications`,
         {

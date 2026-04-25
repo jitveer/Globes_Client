@@ -627,7 +627,7 @@ const AddEditProperty = () => {
     console.log("Sending FormData with Files");
 
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const url = isEditMode
         ? `${import.meta.env.VITE_API_BASE_URL}/api/v1/properties/${id}`
         : `${import.meta.env.VITE_API_BASE_URL}/api/v1/properties`;

@@ -192,7 +192,7 @@ const SuperAdminDashboard = () => {
    */
   const fetchAdmins = async () => {
     setListLoading(true);
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/superadmin/admins`,
@@ -217,7 +217,7 @@ const SuperAdminDashboard = () => {
    * Toggles an administrator's account status (Active/Inactive)
    */
   const handleToggleStatus = async (adminId) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/superadmin/admins/${adminId}/status`,
@@ -247,7 +247,7 @@ const SuperAdminDashboard = () => {
    * 3. Fetches initial data if authorized.
    */
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (!token || user?.role !== "superadmin") {
@@ -287,7 +287,7 @@ const SuperAdminDashboard = () => {
 
   const fetchNotifications = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/notifications`,
         {
@@ -305,7 +305,7 @@ const SuperAdminDashboard = () => {
 
   const fetchUnreadCount = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/notifications/unread-count`,
         {
@@ -323,7 +323,7 @@ const SuperAdminDashboard = () => {
 
   const handleMarkAsRead = async (id) => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/notifications/${id}/read`,
         {
@@ -345,7 +345,7 @@ const SuperAdminDashboard = () => {
 
   const handleMarkAllAsRead = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
       const res = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/v1/notifications/mark-all-read`,
         {
@@ -411,7 +411,7 @@ const SuperAdminDashboard = () => {
   const handleCreateAdmin = async (e) => {
     e.preventDefault();
     setCreateLoading(true);
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
 
     try {
       const response = await fetch(
@@ -504,7 +504,7 @@ const SuperAdminDashboard = () => {
   const handleUpdateAdmin = async (e) => {
     e.preventDefault();
     setCreateLoading(true);
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
 
     try {
       const response = await fetch(
@@ -557,7 +557,7 @@ const SuperAdminDashboard = () => {
       "Confirm Deletion",
       `Are you sure you want to delete ${admin.firstName} ${admin.lastName} (${admin.email})? This action cannot be undone.`,
       async () => {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("accessToken");
         try {
           const response = await fetch(
             `${import.meta.env.VITE_API_BASE_URL}/api/v1/superadmin/admins/${admin._id}`,
@@ -594,7 +594,7 @@ const SuperAdminDashboard = () => {
   ];
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("accessToken");
     localStorage.removeItem("user");
     navigate("/super-admin/login");
   };

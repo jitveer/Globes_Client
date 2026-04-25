@@ -61,7 +61,7 @@ function Footer() {
                       href={
                         link === "Home"
                           ? domainName
-                          : `${domainName}${link.toLowerCase().replace(/\s+/g, "-")}`
+                          : `${domainName}/${link.toLowerCase().replace(/\s+/g, "-")}`
                       }
                       className="hover:text-orange-600 transition-colors duration-300"
                     >

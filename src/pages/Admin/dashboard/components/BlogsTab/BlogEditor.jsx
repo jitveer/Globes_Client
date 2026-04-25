@@ -106,7 +106,7 @@ const BlogEditor = () => {
                 byFile: `${import.meta.env.VITE_API_BASE_URL}/api/v1/blogs/upload`,
               },
               additionalRequestHeaders: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
+                Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
               },
             },
           },
@@ -185,7 +185,7 @@ const BlogEditor = () => {
           `${import.meta.env.VITE_API_BASE_URL}/api/v1/blogs/id/${id}`,
           {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
             },
           },
         );
@@ -254,7 +254,7 @@ const BlogEditor = () => {
         method: isEditMode ? "PUT" : "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
         body: JSON.stringify(payload),
       });
@@ -293,7 +293,7 @@ const BlogEditor = () => {
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
           },
           body: formData,
         },
