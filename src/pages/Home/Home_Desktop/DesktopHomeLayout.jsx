@@ -416,7 +416,7 @@ const DesktopHomeLayout = () => {
                               }
                               setShowSuggestions(false);
                             }}
-                            className="w-full px-4 py-3 flex items-center gap-4 hover:bg-orange-50 transition-colors group border-b border-gray-50 last:border-0"
+                            className="w-full px-4 py-3 flex items-center gap-4 md:hover:bg-orange-50 transition-colors group border-b border-gray-50 last:border-0"
                           >
                             <div
                               className={`w-10 h-10 rounded-lg flex items-center justify-center transition-colors ${item.type === "property" ? "bg-orange-100 text-orange-600" : "bg-blue-100 text-blue-600"}`}
@@ -450,7 +450,7 @@ const DesktopHomeLayout = () => {
                 </div>
                 <button
                   onClick={handleSearch}
-                  className="bg-orange-600 text-white py-3 px-6 rounded-xl hover:bg-orange-700 transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-lg hover:shadow-orange-600/30 text-sm sm:text-base"
+                  className="bg-orange-600 text-white py-3 px-6 rounded-xl md:hover:bg-orange-700 transition-all duration-300 md:hover:scale-[1.02] active:scale-95 shadow-lg md:hover:shadow-orange-600/30 text-sm sm:text-base"
                 >
                   Search Properties
                 </button>
@@ -482,7 +482,7 @@ const DesktopHomeLayout = () => {
                 key={index}
                 className={`text-center text-white animate-[fadeInUp_${
                   0.5 + index * 0.1
-                }s_ease-out] hover:scale-110 transition-transform duration-300`}
+                }s_ease-out] md:hover:scale-110 transition-transform duration-300`}
               >
                 <stat.icon className="text-xl md:text-4xl mx-auto mb-3 opacity-90" />
                 <div className="text-base font-bold mb-2 md:text-4xl">
@@ -514,11 +514,11 @@ const DesktopHomeLayout = () => {
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl group
+                className={`p-6 rounded-2xl transition-all duration-300 md:hover:scale-105 md:hover:shadow-xl group
                   ${
                     activeCategory === category.id
                       ? "bg-orange-600 text-white shadow-lg shadow-orange-600/30"
-                      : "bg-white text-gray-700 shadow-md hover:shadow-lg"
+                      : "bg-white text-gray-700 shadow-md md:hover:shadow-lg"
                   }
                   animate-[slideUp_${0.7 + index * 0.1}s_ease-out]
                 `}
@@ -551,10 +551,10 @@ const DesktopHomeLayout = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-row sm:flex-row justify-betwee  items-start sm:items-center gap-2 md:gap-6 mb-4 md:mb-10 md:mb-16 animate-[fadeInUp_0.6s_ease-out]">
             <div className="">
-              <h2 className="text-xl md:text-5xl font-extrabold text-gray-900 mb-2 tracking-tight">
+              <h2 className="text-xl md:text-3xl font-extrabold text-gray-900 mb-2 tracking-tight">
                 Featured Properties
               </h2>
-              <p className="text-xs md:text-xl text-gray-600 font-medium">
+              <p className="text-xs md:text-base text-gray-600 font-medium">
                 Handpicked premium properties just for you
               </p>
             </div>
@@ -567,7 +567,7 @@ const DesktopHomeLayout = () => {
             </button>
             <button
               onClick={() => navigate("/properties")}
-              className="hidden sm:flex items-center gap-2 text-orange-600 font-bold hover:text-orange-700 transition-colors duration-300 group bg-orange-50 px-4 py-2 rounded-full"
+              className="hidden sm:flex items-center gap-2 text-orange-600 font-bold md:hover:text-orange-700 transition-colors duration-300 group bg-orange-50 px-4 py-2 rounded-full"
             >
               View All
               <FaChevronRight className="group-hover:translate-x-1 transition-transform duration-300" />
@@ -580,7 +580,7 @@ const DesktopHomeLayout = () => {
               <div
                 key={property._id}
                 onClick={() => navigate(`/property/${property._id}`)}
-                className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 group overflow-hidden cursor-pointer animate-[fadeInUp_${
+                className={`bg-white rounded-2xl shadow-lg md:hover:shadow-2xl transition-all duration-500 md:hover:scale-105 md:hover:-translate-y-2 group overflow-hidden cursor-pointer animate-[fadeInUp_${
                   0.8 + index * 0.1
                 }s_ease-out] flex-shrink-0 w-[78vw] sm:w-[42vw] lg:w-auto`}
               >
@@ -604,7 +604,7 @@ const DesktopHomeLayout = () => {
                       e.stopPropagation();
                       toggleFavorite(property._id);
                     }}
-                    className="absolute top-2 right-2 w-7 md:w-10 h-7 md:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 active:scale-95"
+                    className="absolute top-2 right-2 w-7 md:w-10 h-7 md:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg md:hover:scale-110 transition-all duration-300 active:scale-95"
                   >
                     <FaHeart
                       className={`transition-colors duration-300 ${
@@ -689,7 +689,7 @@ const DesktopHomeLayout = () => {
                         )}
                       </p>
                     </div>
-                    <button className="w-full sm:w-auto bg-orange-600 text-white px-6 py-2.5 rounded-xl font-bold hover:bg-orange-700 transition-all duration-300 hover:scale-[1.02] active:scale-95 shadow-md hover:shadow-orange-600/20 text-sm">
+                    <button className="w-full sm:w-auto bg-orange-600 text-white px-6 py-2.5 rounded-xl font-bold md:hover:bg-orange-700 transition-all duration-300 md:hover:scale-[1.02] active:scale-95 shadow-md md:hover:shadow-orange-600/20 text-sm">
                       View Details
                     </button>
                   </div> */}
@@ -701,7 +701,7 @@ const DesktopHomeLayout = () => {
           <div className="mt-4 md:mt-12 text-center">
             <button
               onClick={() => navigate("/properties")}
-              className="inline-flex items-center gap-2 bg-orange-600 text-white px-2 md:px-6 sm:px-10 py-3 md:py-3.5 sm:py-4 rounded-xl font-medium md:font-bold text-xs md:text-base sm:text-lg hover:bg-orange-700 transition-all duration-300 hover:scale-[1.05] active:scale-95 shadow-xl hover:shadow-orange-600/30 hidden md:block"
+              className="inline-flex items-center gap-2 bg-orange-600 text-white px-2 md:px-6 sm:px-10 py-3 md:py-3.5 sm:py-4 rounded-xl font-medium md:font-bold text-xs md:text-base sm:text-lg md:hover:bg-orange-700 transition-all duration-300 md:hover:scale-[1.05] active:scale-95 shadow-xl md:hover:shadow-orange-600/30 hidden md:block"
             >
               View All Properties
               <FaChevronRight className="text-sm" />
@@ -714,10 +714,10 @@ const DesktopHomeLayout = () => {
       <section className="py-0 md:py-20 bg-gradient-to-br from-gray-50 to-orange-50/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-4 md:mb-12 md:mb-16 animate-[fadeInUp_0.6s_ease-out]">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4 tracking-tight">
               Why Choose Globes Properties
             </h2>
-            <p className="text-base md:text-xl text-gray-600">
+            <p className="text-sm md:text-base text-gray-600">
               Your trusted partner in finding the perfect property
             </p>
           </div>
@@ -726,7 +726,7 @@ const DesktopHomeLayout = () => {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className={`bg-white p-4 md:p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 group animate-[fadeInUp_${
+                className={`bg-white p-4 md:p-8 rounded-2xl shadow-lg md:hover:shadow-2xl transition-all duration-500 md:hover:scale-105 md:hover:-translate-y-2 group animate-[fadeInUp_${
                   0.8 + index * 0.1
                 }s_ease-out]`}
               >
@@ -774,7 +774,7 @@ const DesktopHomeLayout = () => {
                   </li>
                 ))}
               </ul>
-              <button className="bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-orange-700 transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl">
+              <button className="bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold md:hover:bg-orange-700 transition-all duration-300 md:hover:scale-105 active:scale-95 shadow-lg md:hover:shadow-xl">
                 Start Virtual Tour
               </button>
             </div>
@@ -787,7 +787,7 @@ const DesktopHomeLayout = () => {
                   className="w-full h-96 object-cover"
                 />
                 <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors duration-300"></div>
-                <button className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300 group">
+                <button className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl md:hover:scale-110 transition-transform duration-300 group">
                   <FaPlay className="text-orange-600 text-2xl ml-1" />
                 </button>
               </div>
@@ -800,10 +800,10 @@ const DesktopHomeLayout = () => {
       <section className="py-12 md:py-20 bg-white hidden md:block">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 md:mb-16 animate-[fadeInUp_0.6s_ease-out]">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-3xl font-extrabold text-gray-900 mb-4 tracking-tight">
               What Our Clients Say
             </h2>
-            <p className="text-base md:text-xl text-gray-600">
+            <p className="text-base md:text-base text-gray-600">
               Don't just take our word for it - hear from our satisfied clients
             </p>
           </div>
@@ -812,7 +812,7 @@ const DesktopHomeLayout = () => {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className={`bg-gradient-to-br from-white to-orange-50/30 p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 hover:-translate-y-2 group animate-[fadeInUp_${
+                className={`bg-gradient-to-br from-white to-orange-50/30 p-8 rounded-2xl shadow-lg md:hover:shadow-2xl transition-all duration-500 md:hover:scale-105 md:hover:-translate-y-2 group animate-[fadeInUp_${
                   0.8 + index * 0.1
                 }s_ease-out] border border-gray-100`}
               >
@@ -894,10 +894,10 @@ const DesktopHomeLayout = () => {
       <section className="py-16 bg-gradient-to-br from-gray-50 to-orange-50/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 animate-[fadeInUp_0.6s_ease-out]">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-base md:text-xl text-gray-600">
+            <p className="text-sm md:text-base text-gray-600">
               Find answers to common questions about buying, selling, and
               renting properties
             </p>
@@ -948,7 +948,7 @@ const DesktopHomeLayout = () => {
             ].map((faq, index) => (
               <div
                 key={index}
-                className={`bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden animate-[fadeInUp_${
+                className={`bg-white rounded-2xl shadow-md md:hover:shadow-xl transition-all duration-300 overflow-hidden animate-[fadeInUp_${
                   0.7 + index * 0.05
                 }s_ease-out]`}
               >
@@ -956,9 +956,9 @@ const DesktopHomeLayout = () => {
                   onClick={() =>
                     setActiveFaq(activeFaq === index ? null : index)
                   }
-                  className="w-full px-6 py-5 flex justify-between items-center text-left hover:bg-orange-50/50 transition-colors duration-300 group"
+                  className="w-full px-6 py-5 flex justify-between items-center text-left md:hover:bg-orange-50/50 transition-colors duration-300 group"
                 >
-                  <h3 className="text-base md:text-lg font-semibold text-gray-900 pr-8 group-hover:text-orange-600 transition-colors duration-300">
+                  <h3 className="text-sm md:text-lg font-semibold text-gray-900 pr-8 group-hover:text-orange-600 transition-colors duration-300">
                     {faq.question}
                   </h3>
                   <FaChevronDown
@@ -975,7 +975,7 @@ const DesktopHomeLayout = () => {
                   }`}
                 >
                   <div className="px-6 pb-5 pt-2">
-                    <p className="text-gray-600 leading-relaxed">
+                    <p className="text-xs md:text-base text-gray-600 leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
@@ -989,13 +989,13 @@ const DesktopHomeLayout = () => {
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
               Still Have Questions?
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 text-sm md:text-base">
               Our team is here to help! Reach out to us anytime.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
                 href="tel:+919945739702"
-                className="bg-orange-600 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-orange-700 transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg flex items-center justify-center gap-2 flex-1 sm:flex-initial"
+                className="bg-orange-600 text-white px-3 md:px-8 py-3.5 rounded-xl font-bold md:hover:bg-orange-700 transition-all duration-300 md:hover:scale-105 active:scale-95 shadow-lg flex items-center justify-center gap-2 flex-1 sm:flex-initial"
               >
                 <FaPhone />
                 Call Us Now
@@ -1004,7 +1004,7 @@ const DesktopHomeLayout = () => {
                 href="https://wa.me/919945739702"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-green-500 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-green-600 transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg flex items-center justify-center gap-2 flex-1 sm:flex-initial"
+                className="bg-green-500 text-white px-3 md:px-8 py-3.5 rounded-xl font-bold md:hover:bg-green-600 transition-all duration-300 md:hover:scale-105 active:scale-95 shadow-lg flex items-center justify-center gap-2 flex-1 sm:flex-initial"
               >
                 <FaWhatsapp />
                 WhatsApp Us
@@ -1017,10 +1017,10 @@ const DesktopHomeLayout = () => {
       <section className="py-12 md:py-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10 md:mb-16 animate-[fadeInUp_0.6s_ease-out]">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-3xl font-extrabold text-gray-900 mb-4 tracking-tight">
               Get In Touch
             </h2>
-            <p className="text-base md:text-xl text-gray-600">
+            <p className="text-base md:text-base text-gray-600">
               Fill out the form below and our team will get back to you within
               24 hours
             </p>
@@ -1247,21 +1247,21 @@ const DesktopHomeLayout = () => {
                 <button
                   type="submit"
                   disabled={isVerifying}
-                  className="w-full md:w-auto min-w-[300px] bg-gradient-to-r from-orange-600 to-orange-700 text-white px-12 py-4 rounded-2xl font-black text-lg shadow-2xl hover:from-orange-700 hover:to-orange-800 transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50 flex items-center justify-center gap-3"
+                  className="w-auto min-w-[200px] md:min-w-[300px] bg-gradient-to-r from-orange-600 to-orange-700 text-white px-2 md:px-12 py-4 rounded-2xl font-black text-base md:text-lg shadow-2xl md:hover:from-orange-700 md:hover:to-orange-800 transition-all duration-300 transform md:hover:scale-105 active:scale-95 disabled:opacity-50 flex items-center justify-center gap-3"
                 >
                   {isVerifying ? (
                     <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
                   ) : (
                     <FaPaperPlane className="text-xl" />
                   )}
-                  {showOtpField ? "VERIFY & SUBMIT" : "GET VERIFICATION OTP"}
+                  {showOtpField ? "VERIFY & SUBMIT" : "SUBMIT"}
                 </button>
 
                 {showOtpField && (
                   <button
                     type="button"
                     onClick={() => setShowOtpField(false)}
-                    className="text-gray-500 hover:text-orange-600 text-sm font-bold transition-colors underline underline-offset-4"
+                    className="text-gray-500 md:hover:text-orange-600 text-sm font-bold transition-colors underline underline-offset-4"
                   >
                     Not your email? Edit Details
                   </button>
@@ -1271,10 +1271,10 @@ const DesktopHomeLayout = () => {
 
             {/* Contact Info */}
             <div className="mt-10 pt-10 border-t border-gray-200">
-              <div className="grid grid-cols-3 md:grid-cols-1 md:grid-cols-3 gap-6 text-center">
+              <div className="grid grid-cols-3 md:grid-cols-1 md:grid-cols-3 gap-3 md:gap-6 text-center">
                 <a
                   href="tel:+919945739702"
-                  className="group hover:scale-105 transition-transform duration-300"
+                  className="group md:hover:scale-105 transition-transform duration-300"
                 >
                   <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-orange-600 transition-colors duration-300">
                     <FaPhone className="text-orange-600 text-xl group-hover:text-white transition-colors duration-300" />
@@ -1288,25 +1288,25 @@ const DesktopHomeLayout = () => {
                   href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@globesproperties.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group hover:scale-105 transition-transform duration-300"
+                  className="group md:hover:scale-105 transition-transform duration-300"
                 >
                   <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-orange-600 transition-colors duration-300">
                     <FaEnvelope className="text-orange-600 text-xl group-hover:text-white transition-colors duration-300" />
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
-                  <p className="text-gray-600">contact@globesproperties.com</p>
+                  <p className="text-gray-600 break-all text-xs md:text-sm ">contact@globesproperties.com</p>
                 </a>
                 <a
                   href="https://maps.app.goo.gl/tYdi1ASnkGYgqUre7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group hover:scale-105 transition-transform duration-300"
+                  className="group md:hover:scale-105 transition-transform duration-300"
                 >
                   <div className="w-14 h-14 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-orange-600 transition-colors duration-300">
                     <FaMapMarkerAlt className="text-orange-600 text-xl group-hover:text-white transition-colors duration-300" />
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-1">Location</h4>
-                  <p className="text-gray-600">Bangalore, India</p>
+                  <p className="text-gray-600 text-xs">Bangalore, India</p>
                 </a>
               </div>
             </div>
@@ -1314,31 +1314,31 @@ const DesktopHomeLayout = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 bg-gradient-to-r from-orange-600 to-orange-700 relative overflow-hidden">
+      <section className="py-8 md:py-24 bg-gradient-to-r from-orange-600 to-orange-700 relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
           <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[60%] rounded-full bg-white blur-3xl"></div>
           <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[60%] rounded-full bg-white blur-3xl"></div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="animate-[fadeInUp_0.6s_ease-out]">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-6 tracking-tight">
               Ready to Find Your Dream Home?
             </h2>
-            <p className="text-base md:text-xl text-orange-100 mb-10 max-w-2xl mx-auto font-medium">
+            <p className="text-sm md:text-base text-orange-100 mb-10 max-w-2xl mx-auto font-medium">
               Let our expert team help you find the perfect property that
               matches your needs and budget.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-6">
               <a
                 href="tel:+919945739702"
-                className="bg-white text-orange-600 px-10 py-4 rounded-xl font-bold hover:bg-gray-50 transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl flex items-center justify-center gap-2"
+                className="bg-white text-orange-600 px-10 py-4 rounded-xl font-bold md:hover:bg-gray-50 transition-all duration-300 md:hover:scale-105 active:scale-95 shadow-xl flex items-center justify-center gap-2"
               >
                 <FaPhone />
                 Contact Us Now
               </a>
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-orange-600 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 shadow-lg"
+                className="bg-transparent border-2 border-white text-white px-10 py-4 rounded-xl font-bold md:hover:bg-white md:hover:text-orange-600 transition-all duration-300 md:hover:scale-105 active:scale-95 flex items-center justify-center gap-2 shadow-lg"
               >
                 <FaCalendarAlt />
                 Schedule a Visit
@@ -1409,7 +1409,7 @@ const DesktopHomeLayout = () => {
           <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
 
           {/* Main Button */}
-          <div className="relative w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-2xl hover:shadow-green-500/50 transition-all duration-300 hover:scale-110 active:scale-95">
+          <div className="relative w-16 h-16 bg-green-500 md:hover:bg-green-600 rounded-full flex items-center justify-center shadow-2xl md:hover:shadow-green-500/50 transition-all duration-300 md:hover:scale-110 active:scale-95">
             <FaWhatsapp className="text-white text-3xl" />
           </div>
 
@@ -1428,7 +1428,7 @@ const DesktopHomeLayout = () => {
           <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden relative animate-[scaleIn_0.3s_ease-out]">
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-gray-100 hover:bg-orange-600 hover:text-white rounded-full transition-all duration-300 z-10"
+              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-gray-100 md:hover:bg-orange-600 md:hover:text-white rounded-full transition-all duration-300 z-10"
             >
               <FaTimes />
             </button>
@@ -1622,7 +1622,7 @@ const DesktopHomeLayout = () => {
                 <button
                   type="submit"
                   disabled={isSubmittingVisit}
-                  className="w-full bg-orange-600 text-white py-4 rounded-xl font-bold hover:bg-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-600/30 flex items-center justify-center gap-2 mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-orange-600 text-white py-4 rounded-xl font-bold md:hover:bg-orange-700 transition-all duration-300 shadow-lg md:hover:shadow-orange-600/30 flex items-center justify-center gap-2 mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmittingVisit ? (
                     <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>

@@ -57,10 +57,10 @@ const Blogs = () => {
         {/* SECTION: Title + Filters */}
         <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 animate-[fadeInUp_0.8s_ease-out]">
           <div className="text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
+            <h2 className="text-2xl sm:text-4xl font-bold text-gray-900">
               Our Latest News & Blogs
             </h2>
-            <p className="text-gray-600 mt-3 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 mt-3 text-sm md:text-lg max-w-2xl mx-auto">
               Stay updated with market insights, home selling tips and trending
               property news.
             </p>
@@ -95,35 +95,36 @@ const Blogs = () => {
                     0.3 + index * 0.1
                   }s_ease-out]`}
                 >
-                  <div className="relative h-48 overflow-hidden bg-gray-100">
-                    <img
-                      src={
-                        blog.featuredImage ||
-                        "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1000&auto=format&fit=crop"
-                      }
-                      alt={blog.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    {/* <span className="absolute left-4 top-4 bg-white/90 backdrop-blur-sm text-xs font-semibold text-gray-700 px-3 py-1.5 rounded-full shadow-md">
+                  <Link to={`/blog/${blog.slug}`}>
+                    <div className="relative h-48 overflow-hidden bg-gray-100">
+                      <img
+                        src={
+                          blog.featuredImage ||
+                          "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1000&auto=format&fit=crop"
+                        }
+                        alt={blog.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      {/* <span className="absolute left-4 top-4 bg-white/90 backdrop-blur-sm text-xs font-semibold text-gray-700 px-3 py-1.5 rounded-full shadow-md">
                       {blog.category}
                     </span> */}
-                  </div>
-
-                  <div className="p-6">
-                    <div className="text-xs text-orange-600 font-semibold mb-2">
-                      {blog.tags?.[0] || "Article"} •{" "}
-                      {new Date(blog.createdAt).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
                     </div>
-                    <h3 className="font-bold text-xl text-gray-900 mb-3 line-clamp-2 group-hover:text-orange-600 transition-colors duration-300">
-                      {blog.title}
-                    </h3>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div className="p-6">
+                      <div className="text-xs text-orange-600 font-semibold mb-2">
+                        {blog.tags?.[0] || "Article"} •{" "}
+                        {new Date(blog.createdAt).toLocaleDateString("en-US", {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                        })}
+                      </div>
+                      <h3 className="font-bold text-lg md:text-xl text-gray-900 mb-3 line-clamp-2 group-hover:text-orange-600 transition-colors duration-300">
+                        {blog.title}
+                      </h3>
+
+                      {/* <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white font-bold shadow-sm ring-2 ring-white">
                           {blog.author?.name?.[0] || "A"}
@@ -139,8 +140,9 @@ const Blogs = () => {
                       >
                         Read
                       </Link>
+                    </div> */}
                     </div>
-                  </div>
+                  </Link>
                 </article>
               ))}
             </div>

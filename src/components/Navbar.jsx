@@ -23,7 +23,8 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
-  const { user, logout, notifications, unreadCount, markNotificationAsRead } = useAuth();
+  const { user, logout, notifications, unreadCount, markNotificationAsRead } =
+    useAuth();
   const [menubar, setMenubar] = useState(false);
   const [locationDropdown, setLocationDropdown] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState("South Bangalore");
@@ -35,8 +36,6 @@ const Navbar = () => {
 
   const [showNotifDropdown, setShowNotifDropdown] = useState(false);
   const notifTimeoutRef = useRef(null);
-
-
 
   const handleLogout = () => {
     logout();
@@ -544,19 +543,13 @@ const Navbar = () => {
           >
             {/* Header with Logo */}
             <div className="flex items-start justify-between mb-8">
-              <div className="flex flex-col gap-2">
+              <a href="/" className="flex flex-col gap-2">
                 <img
                   src="https://globesproperties.com/wp-content/uploads/2024/10/globes_properties_logo.png"
                   alt="Globes Properties Logo"
                   className="h-10 object-contain"
                 />
-                <div className="mt-3">
-                  <div className="text-sm font-bold text-gray-800">
-                    Globes Properties
-                  </div>
-                  <div className="text-xs text-gray-500">We trust to build</div>
-                </div>
-              </div>
+              </a>
 
               {/* Close Button */}
               <button

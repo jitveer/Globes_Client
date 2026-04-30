@@ -14,13 +14,15 @@ function Footer() {
   return (
     <>
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-gray-900 text-white py-6 md:py-12 text-xs md:text-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-4 text-orange-600">
-                Globes Properties
-              </h3>
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8 mb-8">
+            <div className="text-left md:text-left">
+              <img
+                src="https://globesproperties.com/wp-content/uploads/2024/10/globes_properties_logo.png"
+                alt="logo"
+                className="my-4 w-36 md:w-48 md:mt-0"
+              />
               <p className="text-gray-400 mb-4">
                 Your trusted partner in finding the perfect property.
               </p>
@@ -52,8 +54,8 @@ function Footer() {
               </div>
             </div>
 
-            <div>
-              <h4 className="font-semibold mb-4">Quick Links</h4>
+            <div className="text-left md:text-left">
+              <h4 className="font-semibold mb-4 mt-6 md:mt-0">Quick Links</h4>
               <ul className="space-y-2 text-gray-400">
                 {["Home", "Properties", "About", "Contact"].map((link) => (
                   <li key={link}>
@@ -73,12 +75,15 @@ function Footer() {
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">Property Types</h4>
+              <h4 className="font-semibold mb-4 mt-6 md:mt-0">
+                Property Types
+              </h4>
               <ul className="space-y-2 text-gray-400">
                 {["Houses", "Apartments", "Commercial", "Land"].map((type) => (
                   <li key={type}>
                     <a
-                      href={`${domainName}${type.toLowerCase().replace(/\s+/g, "-")}`}
+                      href="/"
+                      // href={`${domainName}${type.toLowerCase().replace(/\s+/g, "-")}`}
                       className="hover:text-orange-600 transition-colors duration-300"
                     >
                       {type}
@@ -89,7 +94,7 @@ function Footer() {
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">Contact Info</h4>
+              <h4 className="font-semibold mb-4 mt-6 md:mt-0">Contact Info</h4>
               <ul className="space-y-2 text-gray-400">
                 <li className="flex items-center gap-2">
                   <FaPhone className="text-orange-600" />
@@ -106,7 +111,7 @@ function Footer() {
                     href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@globesproperties.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="hover:text-orange-600 transition-colors"
+                    className="hover:text-orange-600 transition-colors break-all"
                   >
                     contact@globesproperties.com
                   </a>
