@@ -11,6 +11,7 @@ import {
   FaGoogle,
   FaFacebook,
 } from "react-icons/fa";
+import OTPVerification from "../../components/OTP/OTPVerification";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [showOtpModal, setShowOtpModal] = useState(false);
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -129,6 +131,10 @@ const Auth = () => {
     }
     // --- End Validation ---
 
+    setShowOtpModal(true);
+  };
+
+  const completeRegistration = async () => {
     setLoading(true);
     try {
       const response = await fetch(
@@ -572,6 +578,17 @@ const Auth = () => {
           </div>
         </div>
       </div>
+
+      <OTPVerification
+        isOpen={showOtpModal}
+        recipient={registerData.phone}
+        type="phone"
+        onVerify={(data) => {
+          setShowOtpModal(false);
+          completeRegistration();
+        }}
+        onCancel={() => setShowOtpModal(false)}
+      />
     </div>
   );
 };

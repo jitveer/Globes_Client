@@ -249,9 +249,16 @@ const DesktopHomeLayout = () => {
   };
 
   // Helper function to format image URLs
-  const getImageUrl = (url) => {
-    if (!url) return "https://via.placeholder.com/800x600?text=No+Image";
+  const getImageUrl = (imageInput) => {
+    const placeholder = "https://via.placeholder.com/800x600?text=No+Image";
+    if (!imageInput) return placeholder;
+
+    // Support both old string format and new optimized object format
+    const url = typeof imageInput === "string" ? imageInput : imageInput.webp;
+
+    if (!url) return placeholder;
     if (url.startsWith("http")) return url;
+
     const baseUrl = (import.meta.env.VITE_API_BASE_URL || "").replace(
       /\/$/,
       "",
@@ -1294,7 +1301,9 @@ const DesktopHomeLayout = () => {
                     <FaEnvelope className="text-orange-600 text-xl group-hover:text-white transition-colors duration-300" />
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-1">Email</h4>
-                  <p className="text-gray-600 break-all text-xs md:text-sm ">contact@globesproperties.com</p>
+                  <p className="text-gray-600 break-all text-xs md:text-sm ">
+                    contact@globesproperties.com
+                  </p>
                 </a>
                 <a
                   href="https://maps.app.goo.gl/tYdi1ASnkGYgqUre7"

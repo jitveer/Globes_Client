@@ -22,6 +22,49 @@ import {
 import { MdApartment } from "react-icons/md";
 import Footer from "../../components/Footer";
 
+// ─────────────────────────────────────────────────────────────
+// ProgressiveImage Component
+// Pehle thumbnail (blurred, <20KB) dikhata hai, jab tak full
+// webp (≤200KB) load na ho jaye. Load hone ke baad smooth
+// CSS opacity transition se swap karta hai.
+// Backward compatible: agar sirf ek hi src mile (old format),
+// woh directly show hoga bina progressive loading ke.
+// ─────────────────────────────────────────────────────────────
+const ProgressiveImage = ({ src, thumbnailSrc, alt, className }) => {
+  const [isFullLoaded, setIsFullLoaded] = useState(false);
+  const hasThumbnail = !!thumbnailSrc && !!src && thumbnailSrc !== src;
+
+  return (
+    <div className="relative w-full h-full">
+      {/* Full Image (webp) — pehle se load hona start kar deta hai, opacity 0 se shuru */}
+      {hasThumbnail && (
+        <img
+          src={src}
+          alt={alt}
+          onLoad={() => setIsFullLoaded(true)}
+          className={`${className} absolute inset-0 transition-opacity duration-700 ease-in-out ${
+            isFullLoaded ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      )}
+
+      {/* Thumbnail ya fallback image */}
+      <img
+        src={hasThumbnail ? thumbnailSrc : src}
+        alt={alt}
+        loading="lazy"
+        className={`${className} ${
+          hasThumbnail
+            ? `transition-opacity duration-700 ease-in-out ${
+                isFullLoaded ? "opacity-0" : "opacity-100"
+              }`
+            : ""
+        }`}
+      />
+    </div>
+  );
+};
+
 // Properties Component
 const Properties = () => {
   const navigate = useNavigate();
@@ -66,19 +109,39 @@ const Properties = () => {
     sortBy: "newest",
   });
 
-  // Helper function to format image URLs
-  const getImageUrl = (url) => {
-    if (!url) return "https://via.placeholder.com/800x600?text=No+Image";
-    if (url.startsWith("http")) return url;
-
-    // Ensure base URL doesn't have trailing slash and path has leading slash
+  // Helper: relative path ko full URL mein convert karo
+  const buildUrl = (relativePath) => {
+    if (!relativePath) return null;
+    if (relativePath.startsWith("http")) return relativePath;
     const baseUrl = (import.meta.env.VITE_API_BASE_URL || "").replace(
       /\/$/,
       "",
     );
-    const path = url.startsWith("/") ? url : `/${url}`;
+    const p = relativePath.startsWith("/") ? relativePath : `/${relativePath}`;
+    return `${baseUrl}${p}`;
+  };
 
-    return `${baseUrl}${path}`;
+  // Helper: image field handle karo — string (old format) ya object (new format)
+  // Returns: { webp: string, thumbnail: string }
+  const resolveImageUrls = (imageField) => {
+    const placeholder = "https://via.placeholder.com/800x600?text=No+Image";
+    if (!imageField) return { webp: placeholder, thumbnail: null };
+
+    // New format: { webp, thumbnail, original }
+    if (typeof imageField === "object" && !Array.isArray(imageField)) {
+      return {
+        webp: buildUrl(imageField.webp) || placeholder,
+        thumbnail: buildUrl(imageField.thumbnail) || null,
+      };
+    }
+
+    // Old format: plain string path
+    if (typeof imageField === "string") {
+      const url = buildUrl(imageField) || placeholder;
+      return { webp: url, thumbnail: null };
+    }
+
+    return { webp: placeholder, thumbnail: null };
   };
 
   // Fetch properties from API
@@ -98,10 +161,15 @@ const Properties = () => {
           const firstImage =
             p.images && p.images.length > 0 ? p.images[0] : null;
 
+          // New format: {webp, thumbnail} | Old format: string URL
+          const { webp: imageWebp, thumbnail: imageThumbnail } =
+            resolveImageUrls(firstImage);
+
           return {
             ...p,
             id: p._id,
-            image: getImageUrl(firstImage),
+            imageWebp, // Main display image (≤200KB WebP)
+            imageThumbnail, // Progressive loading placeholder (<20KB blurred)
             price: p.priceRange || "Contact for Price",
             beds: p.beds || firstPlan.beds || 0,
             baths: p.baths || firstPlan.baths || 0,
@@ -758,8 +826,9 @@ const Properties = () => {
                               : "w-[120px] md:w-80 h-auto md:h-full"
                           }`}
                         >
-                          <img
-                            src={property.image}
+                          <ProgressiveImage
+                            src={property.imageWebp}
+                            thumbnailSrc={property.imageThumbnail}
                             alt={property.title}
                             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                           />

@@ -175,9 +175,16 @@ const UserDashboard = () => {
   };
 
   // Helper function to format property image URLs
-  const getImageUrl = (url) => {
-    if (!url) return "https://via.placeholder.com/800x600?text=No+Image";
+  const getImageUrl = (imageInput) => {
+    const placeholder = "https://via.placeholder.com/800x600?text=No+Image";
+    if (!imageInput) return placeholder;
+
+    // Support both old string format and new optimized object format
+    const url = typeof imageInput === "string" ? imageInput : imageInput.webp;
+
+    if (!url) return placeholder;
     if (url.startsWith("http")) return url;
+
     const baseUrl = (import.meta.env.VITE_API_BASE_URL || "").replace(
       /\/$/,
       "",
